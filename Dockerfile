@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.7-slim-bullseye
 LABEL MAINTAINER="KML Vision, devops@kmlvision.com"
 
 RUN apt-get update -q && \
@@ -6,13 +6,13 @@ RUN apt-get update -q && \
     rm -rf /var/lib/apt/lists/*
 
 # install sonar scanner
-ENV SONAR_HOME "/opt/sonar-scanner"
-RUN curl --insecure -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip && \
+ENV SONAR_HOME="/opt/sonar-scanner"
+RUN curl --insecure -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux-x64.zip && \
     mkdir -p ${SONAR_HOME} && \
-    unzip -d /tmp/sonar-scanner sonar-scanner-cli-5.0.1.3006-linux.zip && \
-    mv /tmp/sonar-scanner/sonar-scanner-5.0.1.3006-linux/* ${SONAR_HOME} && \
+    unzip -d /tmp/sonar-scanner sonar-scanner-cli-6.2.1.4610-linux-x64.zip && \
+    mv /tmp/sonar-scanner/sonar-scanner-6.2.1.4610-linux-x64//* ${SONAR_HOME} && \
     rm -rf /tmp/sonar*
 
-ENV PATH ${SONAR_HOME}/bin:$PATH
+ENV PATH="${SONAR_HOME}/bin:$PATH"
 
 RUN sonar-scanner --version
