@@ -1,4 +1,4 @@
-FROM python:3.7-slim-bullseye
+FROM python:3.11-slim-bullseye
 LABEL MAINTAINER="KML Vision, devops@kmlvision.com"
 
 RUN apt-get update -q && \
