@@ -5,8 +5,10 @@ RUN apt-get update -q && \
     apt-get install --no-install-recommends -y curl unzip && \
     rm -rf /var/lib/apt/lists/*
 
+RUN pip install poetry==2.1.4
+
 # install sonar scanner
-ENV SONAR_VERSION=7.1.0.4889
+ENV SONAR_VERSION=7.2.0.5079
 ENV SONAR_HOME="/opt/sonar-scanner"
 RUN curl --insecure -OL https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_VERSION}-linux-x64.zip && \
     mkdir -p ${SONAR_HOME} && \
